@@ -36,7 +36,25 @@ session_start();
         </nav><br>
         <span><marquee>This is Library Management System. Library opens at 8:00 AM and close at 8:00 PM</marquee></span><br><br>
         <div class="row">
-            <div class="col-md-3"></div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form action="update_password.php" method="post">
+                    <div class="form-group">
+                        <labeL>Old Password:</labeL>
+                        <input type="text" class="form-control" name="old_password">
+                    </div>
+                    <div class="form-group">
+                        <labeL>New Password:</labeL>
+                        <input type="text" class="form-control" name="new_password">
+                    </div>
+                    <div class="form-group">
+                        <labeL>Confirm Password:</labeL>
+                        <input type="text" class="form-control" name="confirm_password">
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="change">Change Password</button>
+                </form>
+            <div class="col-md-4"></div>
+            </div>
         </div>
     </body>
 </html>

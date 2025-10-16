@@ -1,5 +1,19 @@
 <?php
-session_start();
+    session_start();
+    $connection = mysqli_connect("localhost","root","");
+    $db = mysqli_select_db($connection,"lms");
+    $name = "";
+    $email = "";
+    $mobile = "";
+    $address = "";
+    $query = "select * from user where email = '$_SESSION[email]'";
+    $query_run = mysqli_query($connection,$query);
+    while($row = mysqli_fetch_assoc($query_run)){
+        $name = $row['name'];
+        $email = $row['email'];
+        $mobile = $row['mobile'];
+        $address = $row['address'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +41,7 @@ session_start();
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="edit_profile.php">Edit Profile</a>
                             <div class="dropdown-divider"></div>
-                            <a class="d ropdown-item" href="change_password.php">Change Password</a>
+                            <a class="dropdown-item" href="change_password.php">Change Password</a>
                         </div>
 		            </li>
                     <li class="nav-item dropdown"><a class="nav-link" href="logout.php">Logout</a></li>
@@ -36,7 +50,29 @@ session_start();
         </nav><br>
         <span><marquee>This is Library Management System. Library opens at 8:00 AM and close at 8:00 PM</marquee></span><br><br>
         <div class="row">
-            <div class="col-md-3"></div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form action="update.php" method="post">
+                    <div class="form-group">
+                        <labeL>Name:</labeL>
+                        <input type="text" class="form-control" value="<?php echo $name;?>" name="name">
+                    </div>
+                    <div class="form-group">
+                        <labeL>Email:</labeL>
+                        <input type="text" class="form-control" value="<?php echo $email;?>" name="email">
+                    </div>
+                    <div class="form-group">
+                        <labeL>Mobile:</labeL>
+                        <input type="text" class="form-control" value="<?php echo $mobile;?>" name="mobile">
+                    </div>
+                    <div class="form-group">
+                        <labeL>Address:</labeL>
+                        <input type="text" class="form-control" value="<?php echo $address;?>" name="address">
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="update">Update</button>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
         </div>
     </body>
 </html>
