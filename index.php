@@ -22,7 +22,7 @@
                     <a class="navbar-brand" href="index.php">Library Management System</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="nav-item"><a class="nav-link" href="index.php">Admin Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin\index.php">Admin Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.php">User Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="signup.php">Register</a></li>
                 </ul>   
@@ -50,7 +50,7 @@
                 </ul>
             </div> 
             <div class="col-md-8" id="main_content">
-                <center><h3>User Registeration Form</h3></center>
+                <center><h3>User Login</h3></center>
                 <form action="" method="post">
                     <div class="form-group">
                         <label for="email">Email Id</label>
