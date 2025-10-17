@@ -34,7 +34,7 @@ session_start();
                 </ul>   
             </div>
         </nav><br>
-        <span><marquee>Hello hottie</marquee></span><br><br>
+        <span><marquee>Hello Admin!!</marquee></span><br><br>
         <div class="row">
             <div class="col-md-3"></div>
         </div>
