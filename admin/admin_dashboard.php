@@ -1,4 +1,5 @@
 <?php
+require('functions.php');
 session_start();
 ?>
 
@@ -27,16 +28,93 @@ session_start();
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="edit_profile.php">Edit Profile</a>
                             <div class="dropdown-divider"></div>
-                            <a class="d ropdown-item" href="change_password.php">Change Password</a>
+                            <a class="dropdown-item" href="change_password.php">Change Password</a>
                         </div>
 		            </li>
                     <li class="nav-item dropdown"><a class="nav-link" href="logout.php">Logout</a></li>
                 </ul>   
             </div>
-        </nav><br>
+        </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #82b6dcff;">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav navbar-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin_dashboard.php">Dashboard</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Books</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="add_book.php">Add New Book</a>
+                            <a class="dropdown-item" href="manage_book.php">Manage Books</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Category</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="">Add New Category</a>
+                            <a class="dropdown-item" href="">Manage Category</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Category</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="">Add New Author</a>
+                            <a class="dropdown-item" href="">Manage Author</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Issue Book</a>
+                    </li>
+                </ul>
+            </div>      
+        </nav>
         <span><marquee>Hello Admin!!</marquee></span><br><br>
         <div class="row">
-            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <div class="card bg-light" style="width: 300px;">
+                    <div class="card-header">Registered Users</div>
+                    <div class="card-body">
+                        <p class="card-text">No. of total users: <?php echo get_user_count();?></p>
+                        <a href="" class="btn btn-danger" target="_blank">View Users</a>
+                    </div> 
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-light" style="width: 300px;">
+                    <div class="card-header">Registered Books</div>
+                    <div class="card-body">
+                        <p class="card-text">No. of available books: <?php echo get_book_count();?></p>
+                        <a href="" class="btn btn-danger" target="_blank">View Books</a>
+                    </div> 
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-light" style="width: 300px;">
+                    <div class="card-header">Book Category</div>
+                    <div class="card-body">
+                        <p class="card-text">No. of book categories: <?php echo get_category_count();?></p>
+                        <a href="" class="btn btn-primary" target="_blank">View Categories</a>
+                    </div> 
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-light" style="width: 300px;">
+                    <div class="card-header">Registered Authors</div>
+                    <div class="card-body">
+                        <p class="card-text">Available Authors <?php echo get_author_count();?></p>
+                        <a href="" class="btn btn-info" target="_blank">View Authors</a>
+                    </div> 
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-light" style="width: 300px;">
+                    <div class="card-header">Issued Bookss</div>
+                    <div class="card-body">
+                        <p class="card-text">No. of issued books <?php echo get_issued_count();?></p>
+                        <a href="" class="btn btn-success" target="_blank">Issued Books</a>
+                    </div> 
+                </div>
+            </div>
         </div>
     </body>
 </html>
