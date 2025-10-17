@@ -34,7 +34,7 @@ session_start();
                 </ul>   
             </div>
         </nav><br>
-        <span><marquee>This is Library Management System. Library opens at 8:00 AM and close at 8:00 PM</marquee></span><br><br>
+        <span><marquee>Hello hottie</marquee></span><br><br>
         <div class="row">
             <div class="col-md-3"></div>
         </div>
