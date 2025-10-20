@@ -41,7 +41,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="edit_profile.php">Edit Profile</a>
                             <div class="dropdown-divider"></div>
-                            <a class="d ropdown-item" href="change_password.php">Change Password</a>
+                            <a class="dropdown-item" href="change_password.php">Change Password</a>
                         </div>
 		            </li>
                     <li class="nav-item dropdown"><a class="nav-link" href="logout.php">Logout</a></li>
