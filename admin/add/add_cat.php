@@ -84,3 +84,13 @@ session_start();
         </div>
     </body>
 </html>
+
+<?php
+    if(isset($_POST['add_category']))
+    {
+        $connection=mysqli_connect("localhost","root","");
+        $db=mysqli_select_db($connection,"lms");
+        $query="insert into category values(null,'$_POST[cat_name]')";
+        $query_run=mysqli_query($connection,$query);
+    }
+?>

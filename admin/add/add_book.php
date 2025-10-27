@@ -78,12 +78,16 @@ session_start();
                         <input type="text" name="book_name" class="form-control" required="">
                     </div>
                     <div class="form-group">
-                        <label>Author Name</label>
-                        <input type="text" name="author_name" class="form-control" required="">
+                        <label>Author ID</label>
+                        <input type="number" name="author_id" class="form-control" required="">
                     </div>
                     <div class="form-group">
-                        <label>Category Name</label>
-                        <input type="text" name="category_name" class="form-control" required="">
+                        <label>Category ID</label>
+                        <input type="number" name="category_id" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Book No:</label>
+                        <input type="number" name="book_no" class="form-control" required="">
                     </div>
                     <div class="form-group">
                         <label>Book Price</label>
@@ -96,3 +100,13 @@ session_start();
         </div>
     </body>
 </html>
+<?php
+    if(isset($_POST['add_book'])) //if ADD BOOK button is clicked
+    {
+        $connection=mysqli_connect("localhost","root","");
+        $db=mysqli_select_db($connection,"lms");
+        $query="insert into book values(null,'$_POST[book_name]',$_POST[author_id],$_POST[category_id],$_POST[book_no],$_POST[book_price])";
+        $query_run=mysqli_query($connection,$query);
+    }
+?>
+

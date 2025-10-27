@@ -52,7 +52,7 @@ session_start();
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown">Category</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="add/add_cat.php">Add New Category</a>
-                            <a class="dropdown-item" href="add/manage_cat">Manage Category</a>
+                            <a class="dropdown-item" href="add/manage_cat.php">Manage Category</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -63,7 +63,7 @@ session_start();
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="add/issue_book">Issue Book</a>
+                        <a class="nav-link" href="add/issue_book.php">Issue Book</a>
                     </li>
                 </ul>
             </div>      
