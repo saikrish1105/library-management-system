@@ -30,11 +30,11 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown">My Profile </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="../view_profile.php">View Profile</a>
+                            <a class="dropdown-item" href="view_profile.php">View Profile</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../edit_profile.php">Edit Profile</a>
+                            <a class="dropdown-item" href="edit_profile.php">Edit Profile</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../change_password.php">Change Password</a>
+                            <a class="dropdown-item" href="change_password.php">Change Password</a>
                         </div>
 		            </li>
                     <li class="nav-item dropdown"><a class="nav-link" href="logout.php">Logout</a></li>
@@ -46,30 +46,6 @@
                 <ul class="nav navbar-nav navbar-center">
                     <li class="nav-item">
                         <a class="nav-link" href="user_dashboard.php">Dashboard</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Books</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="../add/add_book.php">Add New Book</a>
-                            <a class="dropdown-item" href="../add/manage_book.php">Manage Books</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Category</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="../add/add_cat.php">Add New Category</a>
-                            <a class="dropdown-item" href="../add/manage_cat.php">Manage Category</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Category</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="../add/add_author.php">Add New Author</a>
-                            <a class="dropdown-item" href="../add/manage_author.php">Manage Author</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../add/issue_book.php">Issue Book</a>
                     </li>
                 </ul>
             </div>      

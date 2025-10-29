@@ -60,7 +60,7 @@
                         <label for="email">Password</label>
                         <input type="password" class="form-control" name="password" required>
                     </div>
-                    <button type="Submit" class="btn btn-primary">Register</button>
+                    <button type="Submit" class="btn btn-primary">Log In</button>
                 </form>
                 <?php
                     session_start();
