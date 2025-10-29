@@ -98,8 +98,8 @@ session_start();
                                 <td><?php echo $row['book_no'];?></td>
                                 <td><?php echo $row['book_price'];?></td>
                                 <td>
-                                    <button class="btn" name=""><a href="edit_book.php?bn=<?php echo $row['book_no'];?>]">Edit</a></button> <!-- to know which book to delete when you click delete. for that we pass the book number to each of the edits and deletes-->
-                                    <button class="btn" name=""><a href="delete_book.php?bn=<?php echo $row['book_no'];?>]">Delete</a></button>
+                                    <button class="btn" name=""><a href="edit_book.php?bn=<?php echo $row['book_no'];?>">Edit</a></button> <!-- to know which book to delete when you click delete. for that we pass the book number to each of the edits and deletes-->
+                                    <button class="btn" name=""><a href="delete_book.php?bn=<?php echo $row['book_no'];?>">Delete</a></button>
                                 </td>
                             </tr>
                             <?php

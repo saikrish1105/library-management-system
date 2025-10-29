@@ -1,6 +1,37 @@
-<?php
-require('../functions.php');
-session_start();
+<?php //we get the values from database and assign it to the variables
+    require('../functions.php');
+    session_start();
+    $connection=mysqli_connect("localhost","root","");
+    $db=mysqli_select_db($connection,"lms");
+    $cat_name="";
+    $cat_id="";
+    $cid = isset($_GET['cid']) ? (int)$_GET['cid'] : 0;
+    $query = "SELECT * FROM category WHERE cat_id=$cid";
+    $query_run = mysqli_query($connection, $query);
+    // ... Handle mysqli errors if any
+    //where the book_no is the book number that we get in the url when we click Delete
+    $query_run=mysqli_query($connection,$query);
+    while($row=mysqli_fetch_assoc($query_run))
+    {
+        $cat_name=$row['cat_name'];
+        $cat_id=$row['cat_id'];
+    }
+    
+    if(isset($_POST['update'])) {
+    $connection = mysqli_connect("localhost", "root", "");
+    $db = mysqli_select_db($connection, "lms");
+    $cid = isset($_GET['cid']) ? (int)$_GET['cid'] : 0;
+    $cat_name = $_POST['cat_name'];
+
+    // Only update the name
+    $query = "UPDATE category SET cat_name='$cat_name' WHERE cat_id=$cid";
+    $query_run = mysqli_query($connection, $query);
+
+    header("location:manage_cat.php");
+    exit();
+}
+
+?>
 ?>
 
 <!DOCTYPE html>
@@ -70,36 +101,23 @@ session_start();
         </nav>
         <span style="color:red;"><marquee>Make sure the author details are correct before adding them</marquee></span><br><br>
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Category Name</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <?php 
-                        $connection=mysqli_connect("localhost","root","");
-                        $db=mysqli_select_db($connection,"lms");
-                        $query="select * from category";
-                        $query_run=mysqli_query($connection,$query);
-                        while($row=mysqli_fetch_assoc($query_run))
-                        {
-                            ?>
-                            <tr>
-                                <!--$row means gets the data from the database-->
-                                <td><?php echo $row['cat_name'];?></td>
-                                <td>
-                                    <button class="btn" name=""><a href="edit_category.php?cid=<?php echo$row['cat_id'];?>">Edit</a></button>
-                                    <button class="btn" name=""><a href="delete_category.php?cid=<?php echo$row['cat_id'];?>">Delete</a></button>
-                                </td>
-                            </tr>
-                            <?php
-                        } 
-                    ?>
-                </table>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form action="" method="post">
+             
+                    <div class="form-group">
+                        <label>Categroy Name</label>
+                        <input type="text" name="cat_name" value="<?php echo $cat_name;?>"class="form-control" required="">
+                    </div>
+                    
+                    
+
+                    <button name="update" class="btn btn-primary">Update Category</button>
+                </form>
             </div>
+            <div class="col-md-4"></div>
         </div>
     </body>
 </html>
+
+

@@ -1,6 +1,12 @@
 <?php
-require('../functions.php');
-session_start();
+    
+    session_start();
+    $connection = mysqli_connect("localhost","root","");
+    $db = mysqli_select_db($connection,"lms");
+    $book_name = "";
+    $author = "";
+    $book_no = "";
+    $query = "select book_name, book_author, book_no from issued_book where student_id=$_SESSION[id] and status=1";
 ?>
 
 <!DOCTYPE html>
@@ -8,9 +14,9 @@ session_start();
     <head>
         <title>Admin Dashboard</title>
         <meta charset="utf-8" name="viewport" content="width=device-width,intial-scale=1">
-        <link rel="stylesheet" type="text/css" href="../../bootstrap-4.4.1/css/bootstrap.min.css">
-        <script type="text/javascript" src="../../bootstrap-4.4.1/js/jquery_latest.js"></script>
-        <script type="text/javascript" src="../../bootstrap-4.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="bootstrap-4.4.1/css/bootstrap.min.css">
+        <script type="text/javascript" src="bootstrap-4.4.1/js/jquery_latest.js"></script>
+        <script type="text/javascript" src="bootstrap-4.4.1/js/bootstrap.min.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -39,67 +45,67 @@ session_start();
             <div class="container-fluid">
                 <ul class="nav navbar-nav navbar-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="../admin_dashboard.php">Dashboard</a>
+                        <a class="nav-link" href="user_dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown">Books</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="add_book.php">Add New Book</a>
-                            <a class="dropdown-item" href="manage_book.php">Manage Books</a>
+                            <a class="dropdown-item" href="../add/add_book.php">Add New Book</a>
+                            <a class="dropdown-item" href="../add/manage_book.php">Manage Books</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown">Category</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="add_cat.php">Add New Category</a>
-                            <a class="dropdown-item" href="manage_cat.php">Manage Category</a>
+                            <a class="dropdown-item" href="../add/add_cat.php">Add New Category</a>
+                            <a class="dropdown-item" href="../add/manage_cat.php">Manage Category</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Author</a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Category</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="add_author.php">Add New Author</a>
-                            <a class="dropdown-item" href="manage_author.php">Manage Author</a>
+                            <a class="dropdown-item" href="../add/add_author.php">Add New Author</a>
+                            <a class="dropdown-item" href="../add/manage_author.php">Manage Author</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="issue_book.php">Issue Book</a>
+                        <a class="nav-link" href="../add/issue_book.php">Issue Book</a>
                     </li>
                 </ul>
             </div>      
         </nav>
-        <span style="color:red;"><marquee>Make sure the author details are correct before adding them</marquee></span><br><br>
+        <span><marquee>Refresh the page to see all the current users</marquee></span><br><br>
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <table class="table table-bordered table-hover">
-                    <thead>
+                <form>
+                    <table class="table table-bordered" width="900px" style="text-align:center">
                         <tr>
-                            <th>Category Name</th>
-                            <th>Action</th>
+                            <th>Book Name</th> 
+                            <th>Author</th>
+                            <th>Book Number</th>
                         </tr>
-                    </thead>
-                    <?php 
-                        $connection=mysqli_connect("localhost","root","");
-                        $db=mysqli_select_db($connection,"lms");
-                        $query="select * from category";
-                        $query_run=mysqli_query($connection,$query);
-                        while($row=mysqli_fetch_assoc($query_run))
-                        {
-                            ?>
-                            <tr>
-                                <!--$row means gets the data from the database-->
-                                <td><?php echo $row['cat_name'];?></td>
-                                <td>
-                                    <button class="btn" name=""><a href="edit_category.php?cid=<?php echo$row['cat_id'];?>">Edit</a></button>
-                                    <button class="btn" name=""><a href="delete_category.php?cid=<?php echo$row['cat_id'];?>">Delete</a></button>
-                                </td>
-                            </tr>
-                            <?php
-                        } 
-                    ?>
-                </table>
-            </div>
+                        <?php
+                            $query_run = mysqli_query($connection,$query);
+                            while($row = mysqli_fetch_array($query_run)){
+                                $book_name = $row['book_name'];
+                                $book_author = $row['book_author'];
+                                $book_no = $row['book_no'];
+                                
+                                ?>
+                                <tr>
+                                    <td><?php echo $book_name;?></td>
+                                    <td><?php echo $book_author;?></td>
+                                    <td><?php echo $book_no;?></td>
+
+                                </tr>
+                                <?php
+                            }
+                        ?>
+                    </table>
+                </form>
+            </div>    
+            <div class="col-md-2"></div>
         </div>
     </body>
 </html>

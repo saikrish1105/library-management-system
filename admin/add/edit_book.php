@@ -1,6 +1,34 @@
-<?php
-require('../functions.php');
-session_start();
+<?php //we get the values from database and assign it to the variables
+    require('../functions.php');
+    session_start();
+    $connection=mysqli_connect("localhost","root","");
+    $db=mysqli_select_db($connection,"lms");
+    $book_no="";
+    $book_name="";
+    $author_id="";
+    $cat_id="";
+    $book_price="";
+    $query="select * from book where book_no= $_GET[bn]"; //where the book_no is the book number that we get in the url when we click Delete
+    $query_run=mysqli_query($connection,$query);
+    while($row=mysqli_fetch_assoc($query_run))
+    {
+        $book_name=$row['book_name'];
+        $book_no=$row['book_no'];
+        $author_id=$row['author_id'];
+        $cat_id=$row['cat_id'];
+        $book_price=$row['book_price'];
+    }
+    
+    if(isset($_POST['update']))
+    {
+        $connection=mysqli_connect("localhost","root","");
+        $db=mysqli_select_db($connection,"lms");
+        $query="update book set book_name='$_POST[book_name]', author_id=$_POST[author_id],cat_id=$_POST[cat_id],book_price=$_POST[book_price] where book_no=$_GET[bn]"; 
+        $query_run=mysqli_query($connection,$query);
+        header("location:manage_book.php"); //redirect the user’s browser to another page after your form is processed
+        exit();
+    }
+?>
 ?>
 
 <!DOCTYPE html>
@@ -70,36 +98,37 @@ session_start();
         </nav>
         <span style="color:red;"><marquee>Make sure the author details are correct before adding them</marquee></span><br><br>
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Category Name</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <?php 
-                        $connection=mysqli_connect("localhost","root","");
-                        $db=mysqli_select_db($connection,"lms");
-                        $query="select * from category";
-                        $query_run=mysqli_query($connection,$query);
-                        while($row=mysqli_fetch_assoc($query_run))
-                        {
-                            ?>
-                            <tr>
-                                <!--$row means gets the data from the database-->
-                                <td><?php echo $row['cat_name'];?></td>
-                                <td>
-                                    <button class="btn" name=""><a href="edit_category.php?cid=<?php echo$row['cat_id'];?>">Edit</a></button>
-                                    <button class="btn" name=""><a href="delete_category.php?cid=<?php echo$row['cat_id'];?>">Delete</a></button>
-                                </td>
-                            </tr>
-                            <?php
-                        } 
-                    ?>
-                </table>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form action="" method="post">
+                    
+                    <div class="form-group">
+                        <label>Book Number</label>
+                        <input type="number" name="book_no" value="<?php echo $book_no;?>"class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Book Name</label>
+                        <input type="text" name="book_name" value="<?php echo $book_name;?>"class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Author ID</label>
+                        <input type="number" name="author_id" value="<?php echo $author_id;?>"class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Category ID</label>
+                        <input type="number" name="cat_id" value="<?php echo $cat_id;?>"class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Book Price</label>
+                        <input type="number" name="book_price" value="<?php echo $book_price;?>"class="form-control" required="">
+                    </div>
+
+                    <button name="update" class="btn btn-primary">Update Book</button>
+                </form>
             </div>
+            <div class="col-md-4"></div>
         </div>
     </body>
 </html>
+
+

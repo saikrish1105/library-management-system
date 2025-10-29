@@ -1,6 +1,37 @@
-<?php
-require('../functions.php');
-session_start();
+<?php //we get the values from database and assign it to the variables
+    require('../functions.php');
+    session_start();
+    $connection=mysqli_connect("localhost","root","");
+    $db=mysqli_select_db($connection,"lms");
+    $author_name="";
+    $author_id="";
+    $aid = isset($_GET['aid']) ? (int)$_GET['aid'] : 0;
+    $query = "SELECT * FROM author WHERE author_id=$aid";
+    $query_run = mysqli_query($connection, $query);
+    // ... Handle mysqli errors if any
+    //where the book_no is the book number that we get in the url when we click Delete
+    $query_run=mysqli_query($connection,$query);
+    while($row=mysqli_fetch_assoc($query_run))
+    {
+        $author_name=$row['author_name'];
+        $author_id=$row['author_id'];
+    }
+    
+    if(isset($_POST['update'])) {
+    $connection = mysqli_connect("localhost", "root", "");
+    $db = mysqli_select_db($connection, "lms");
+    $aid = isset($_GET['aid']) ? (int)$_GET['aid'] : 0;
+    $author_name = $_POST['author_name'];
+
+    // Only update the name
+    $query = "UPDATE author SET author_name='$author_name' WHERE author_id=$aid";
+    $query_run = mysqli_query($connection, $query);
+
+    header("location:manage_author.php");
+    exit();
+}
+
+?>
 ?>
 
 <!DOCTYPE html>
@@ -73,24 +104,20 @@ session_start();
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <form action="" method="post">
-                    
+             
                     <div class="form-group">
                         <label>Author Name</label>
-                        <input type="text" name="author_name" class="form-control" required="">
+                        <input type="text" name="author_name" value="<?php echo $author_name;?>"class="form-control" required="">
                     </div>
-                    <button name="add_author" class="btn btn-primary">Add Author</button>
+                    
+                    
+
+                    <button name="update" class="btn btn-primary">Update Author</button>
                 </form>
             </div>
             <div class="col-md-4"></div>
         </div>
     </body>
 </html>
-<?php
-    if(isset($_POST['add_author']))
-    {
-        $connection=mysqli_connect("localhost","root","");
-        $db=mysqli_select_db($connection,"lms");
-        $query="insert into author values('','$_POST[author_name]')";
-        $query_run=mysqli_query($connection,$query);
-    }
-?>
+
+
